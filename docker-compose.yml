@@ -9,24 +9,30 @@ services:
       - POSTGRES_PASSWORD=postgres
 
   pgadmin4:
-     image: dpage/pgadmin4
-     restart: always
-     environment:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
       PGADMIN_DEFAULT_EMAIL: "admin@gmail.com"
       PGADMIN_DEFAULT_PASSWORD: "admin"
-     ports:
+    ports:
       - "85:80"
-     depends_on:
-     - db
+    depends_on:
+      - db
 
   web:
     build: .
     command: python ./manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
-    ports:
-      - "80:8000"
     depends_on:
       - db
 
-
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+    depends_on:
+      - web
+    ports:
+      - "81:80"  # แก้ไขตรงนี้เป็น 80:80

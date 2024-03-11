@@ -6,13 +6,13 @@
 <table class="table table-borderless">
     <thread class="border-bottom font-weight-bold">
         <tr>
-            <td>Name</td>
-            <td>Student ID</td>
-            <td>Class</td>
-            <td>Gender</td>
+            <td>ชื่อ - นามสกุล</td>
+            <td>เลขบัเลขประจําตัวประชาชน</td>
+            <td>เบอร์โทรศัพท์</td>
+            <td>เพศ</td>
             <td>
                 <a href="{% url 'student_insert' %}" class="btn btn-outline-success">
-                    <i class="fas fa-plus"></i> Add Data
+                    <i class="fas fa-plus"></i> เพิ่มข้อมูล
                 </a>
             </td>
         </tr>
@@ -21,9 +21,9 @@
         {% for student in student_list %}
             <tr>
                 <td>{{student.fullname}}
-                <td>{{student.NIM}}
+                <td>{{student.Card}}
                 <td>{{student.Mobile}}
-                <td>{{student.position}}
+                <td>{{student.gender}}
                 <td>
                     <a href="{% url 'student_update' student.id %}" class="btn text-secondary px=0">
                         <i class="far fa-edit fa-lg"></i>

@@ -18,5 +18,6 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('Apps1.urls')),
+    path('', include('Apps1.urls')),  # Use a distinct prefix for Apps1
+    path('users/', include('Apps2.urls')),  # Use a distinct prefix for Apps2
 ]
